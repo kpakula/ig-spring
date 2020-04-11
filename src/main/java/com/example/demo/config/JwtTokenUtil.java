@@ -24,7 +24,14 @@ public class JwtTokenUtil {
         return claimsResolver.apply(claims);
     }
 
-
+    /**
+     * Method to getting username from given token
+     * @param token This is the token currently being processed
+     * @return Generic class
+     */
+    public String getUsernameFromToken(String token) {
+        return getClaimFromToken(token, Claims::getSubject);
+    }
 
 
 }

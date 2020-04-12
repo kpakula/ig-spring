@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.function.Function;
 
 /**
@@ -25,7 +26,7 @@ public class JwtTokenUtil {
     }
 
     /**
-     * Method to getting username from given token
+     * Method to get username from a token
      * @param token This is the token currently being processed
      * @return Generic class
      */
@@ -33,5 +34,13 @@ public class JwtTokenUtil {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
+    /**
+     * Method to get token expiration date
+     * @param token This is the token currently being processed
+     * @return Generic class
+     */
+    public Date getExpirationDateFromToken(String token) {
+        return getClaimFromToken(token, Claims::getExpiration);
+    }
 
 }

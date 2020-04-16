@@ -62,8 +62,6 @@ public class JwtTokenUtil {
         return makeToken(claims, userDetails.getUsername());
     }
 
-
-
     private String makeToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()
                 .setClaims(claims)

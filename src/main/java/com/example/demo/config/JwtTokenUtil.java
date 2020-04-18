@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,10 +17,10 @@ import java.util.function.Function;
  * Jwt Token Util for creation and validation jwt token
  */
 @Component
-public class JwtTokenUtil {
+public class JwtTokenUtil implements Serializable {
 
-    @Value("${jwt.token.expiration.time}")
-    private long JWT_TOKEN_EXPIRATION_TIME;
+//    @Value("${jwt.token.expiration.time}")
+    private int expiration = 60 * 60 * 5;
 
     @Value("${jwt.secret}")
     private String secret;
@@ -67,14 +68,14 @@ public class JwtTokenUtil {
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_EXPIRATION_TIME * 1000))
+                .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {
         String username = getUsernameFromToken(token);
-        return (username.equals(userDetails.getUsername()) && !t)
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
     public boolean isTokenExpired(String token) {

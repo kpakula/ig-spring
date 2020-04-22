@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.config.JwtTokenUtil;
 import com.example.demo.model.AuthenticationRequest;
 import com.example.demo.model.AuthenticationResponse;
+import com.example.demo.model.UserDto;
 import com.example.demo.service.JwtUserDetailsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,6 +37,11 @@ public class JwtAuthenticationController {
         final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new AuthenticationResponse(token));
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity<?> saveUser(@RequestBody UserDto userDto) {
+        return ResponseEntity.ok(jwtUserDetailsService.save(userDto));
     }
 
     private void authenticate(String username, String password) throws Exception {

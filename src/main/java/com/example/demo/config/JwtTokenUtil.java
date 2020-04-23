@@ -20,7 +20,7 @@ import java.util.function.Function;
 public class JwtTokenUtil implements Serializable {
 
 //    @Value("${jwt.token.expiration.time}")
-    private int expiration = 60 * 60 * 5;
+    private int expiration = 15;
 
     @Value("${jwt.secret}")
     private String secret;

@@ -7,12 +7,16 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@ApiOperation(value = "", authorizations = { @Authorization(value="apiKey") })
+//@ApiOperation(value = "", authorizations = { @Authorization(value="apiKey") })
 public class HomeController {
 
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public ResponseEntity<?> test() {
+        return ResponseEntity.ok("Test");
+    }
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/current", method = RequestMethod.GET)
     public ResponseEntity<?> firstPage() {
         return ResponseEntity.ok("Home");
     }

@@ -24,13 +24,16 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-
 
         final String requestTokenHeader = httpServletRequest.getHeader("Authorization");
         String username = null;
         String jwtToken = null;
+
+        System.out.println(requestTokenHeader);
+        System.out.println(httpServletRequest.getHeaderNames().nextElement());
 
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);

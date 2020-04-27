@@ -1,13 +1,11 @@
 package com.example.demo.controller;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Authorization;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-//@CrossOrigin
-//@ApiOperation(value = "", authorizations = { @Authorization(value="apiKey") })
 public class HomeController {
 
 

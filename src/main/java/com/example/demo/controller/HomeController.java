@@ -6,12 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin
+//@CrossOrigin
 //@ApiOperation(value = "", authorizations = { @Authorization(value="apiKey") })
 public class HomeController {
 
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
     public ResponseEntity<?> test() {
         return ResponseEntity.ok("Test");
     }
